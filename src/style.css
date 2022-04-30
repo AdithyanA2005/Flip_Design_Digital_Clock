@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --card-size: 10vw;
+  --nav-height: 3rem;
+  --border-radius: 0.4rem;
+  --x-side-padding: calc(var(--card-size) / 8);
+  --y-side-padding: calc(var(--card-size) / 20);
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: white;
+  color: #0bb8c4;
+}
+
+/* NAVBAR */
+.nav-brand {
+  left: 0;
+  right: 0;
+  top: 0;
+  flex-direction: column;
+  height: var(--nav-height);
+  padding-top: 1rem;
+  position: absolute;
+  text-align: center;
+}
+
+/* CONTAINERS */
+.timer {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section .title {
+  font-size: 1.1rem;
+}
+.section .container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* CARD */
+.card {
+  display: flex;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  flex-direction: column;
+  position: relative;
+}
+
+.card__top,
+.card__bottom,
+.card .card__top__flip,
+.card .card__bottom__flip {
+  display: flex;
+  height: calc(var(--card-size) / 2);
+  font-size: var(--card-size);
+  line-height: 1;
+  overflow: hidden;
+  padding-left: var(--x-side-padding);
+  padding-right: var(--x-side-padding);
+  text-align: center;
+}
+
+.card .card__top__flip,
+.card__top {
+  align-items: flex-start;
+  background-color: #f7f7f7;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: var(--y-side-padding);
+}
+
+.card .card__bottom__flip,
+.card__bottom {
+  align-items: flex-end;
+  background-color: white;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  padding-bottom: var(--y-side-padding);
+}
+
+.card .card__top__flip {
+  animation: flip-top 250ms ease-in;
+  position: absolute;
+  transform-origin: bottom;
+  top: 0;
+}
+
+.card .card__bottom__flip {
+  animation: flip-down 250ms ease-out 250ms;
+  position: absolute;
+  transform-origin: top;
+  transform: rotateX(90deg);
+  bottom: 0;
+}
+
+/* ANIMATIONS */
+@keyframes flip-top {
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes flip-down {
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  :root {
+    --card-size: 15vw;
+  }
+  .timer {
+    gap: 1rem;
+  }
+  .nav-brand {
+    font-size: 1.5rem;
+  }
+}
